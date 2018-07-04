@@ -21,7 +21,7 @@
 
 // You are one of those who like to know how things work inside?
 // Let me show you the cogs that make impress.js run...
-( function( document, window ) {
+( function( document, window, jqq ) {
     "use strict";
 
     // HELPER FUNCTIONS
@@ -279,6 +279,80 @@
                 triggerEvent( step, "impress:stepenter" );
                 lastEntered = step;
             }
+            //$(step).find('h1').textillate();
+            //console.log(jqq(step).find('h1').text());
+
+            var ditdoen =  $('.tlt',step);
+
+            jqq(ditdoen).textillate({
+                // the default selector to use when detecting multiple texts to animate
+                selector: '.step',
+
+                // enable looping
+                loop: false,
+
+                // sets the minimum display time for each text before it is replaced
+                minDisplayTime: 4000,
+
+                // sets the initial delay before starting the animation
+                // (note that depending on the in effect you may need to manually apply
+                // visibility: hidden to the element before running this plugin)
+                initialDelay: 0,
+
+                // set whether or not to automatically start animating
+                autoStart: true,
+
+                // custom set of 'in' effects. This effects whether or not the
+                // character is shown/hidden before or after an animation
+                inEffects: [],
+
+                // custom set of 'out' effects
+                outEffects: [ 'hinge' ],
+
+                // in animation settings
+                in: {
+                    // set the effect name
+                    effect: 'fadeInLeftBig',
+
+                    // set the delay factor applied to each consecutive character
+                    delayScale: 1.5,
+
+                    // set the delay between each character
+                    delay: 300,
+
+                    // set to true to animate all the characters at the same time
+                    sync: false,
+
+                    // randomize the character sequence
+                    // (note that shuffle doesn't make sense with sync = true)
+                    shuffle: true,
+
+                    // reverse the character sequence
+                    // (note that reverse doesn't make sense with sync = true)
+                    reverse: false,
+
+                    // callback that executes once the animation has finished
+                    callback: function () {}
+                },
+
+                // out animation settings.
+                out: {
+                    effect: 'hinge',
+                    delayScale: 1.5,
+                    delay: 50,
+                    sync: false,
+                    shuffle: false,
+                    reverse: false,
+                    callback: function () {}
+                },
+
+                // callback that executes once textillate has finished
+                callback: function () {},
+
+                // set the type of token to animate (available types: 'char' and 'word')
+                type: 'char'
+
+            });
         };
 
         // `onStepLeave` is called whenever the step element is left
@@ -665,7 +739,7 @@
     // Flag that can be used in JS to check if browser have passed the support test
     impress.supported = impressSupported;
 
-} )( document, window );
+} )( document, window, jQuery );
 
 // NAVIGATION EVENTS
 

@@ -28,3 +28,16 @@ div.slide {
     background-repeat: no-repeat;
     background-size: 10%;
 }
+
+q ul {
+    list-style: circle;
+}
+
+.slide q.small {
+    font-size: 0.9em;
+    margin: 0.2em 0;
+}
+
+.slide q {
+    margin-top: 70px;
+}
